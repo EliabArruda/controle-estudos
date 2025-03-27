@@ -12,10 +12,10 @@ Desenvolver uma plataforma intuitiva e eficiente para gestão de tempo de estudo
 - Personalização de categorias e temas de estudo.  
 - Interface responsiva e fácil de usar.  
 
-## Tecnologias Utilizadas  
+## 🛠️ Tecnologias Utilizadas  
 - **Backend:** Java + Spring Boot  
-- **Frontend:** React (ou Thymeleaf)  
-- **Banco de Dados:** MySQL ou PostgreSQL  
+- **Frontend:** Angular 19  
+- **Banco de Dados:** MySQL  
 - **Infraestrutura:** Docker  
 
 ## Como Executar o Projeto  
