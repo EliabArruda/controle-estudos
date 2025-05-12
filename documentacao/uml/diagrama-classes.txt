@@ -1,0 +1,38 @@
++---------------------+
+|      Usuário        |
++---------------------+
+| - id: Long          |
+| - nome: String      |
+| - email: String     |
+| - senha: String     |
++---------------------+
+| + registrar()       |
+| + autenticar()      |
++---------------------+
+
++---------------------+
+|      Sessão         |
++---------------------+
+| - id: Long          |
+| - disciplina: String|
+| - assunto: String   |
+| - dataInicio: LocalDateTime|
+| - duracaoMinutos: int|
+| - status: String    |  <-- ("Em andamento", "Concluída", "Pausada")
++---------------------+
+| + iniciarSessao()   |
+| + pausarSessao()    |
+| + concluirSessao()  |
+| + calcularTempo()   |
++---------------------+
+
++---------------------+
+|   Histórico         |
++---------------------+
+| - sessoes: Sessão[] |
+| - totalHoras: double|
++---------------------+
+| + filtrarPorData()  |
+| + filtrarPorDisciplina()|
+| + exportarParaCSV() |
++---------------------+
