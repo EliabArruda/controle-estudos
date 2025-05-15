@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Data
 @Entity
@@ -23,10 +24,6 @@ public class Usuario {
         this.senha = senha;
     }
     public Usuario(){
-    }
-    public void registrar(){
-    }
-    public void autenticar(){
     }
 }
 

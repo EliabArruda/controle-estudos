@@ -1,27 +1,23 @@
 package com.eliab.controleestudos.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.Duration;
+import java.util.List;
 
 @Data
 @Entity
 public class Historico {
-    
-    private Sessao sessoes;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "historico_id")
+    private List<Sessao> sessoes;
+
     private Duration totalHoras;
-
-    public Historico(){
-    }
-
-    public Historico(Sessao sessoes, Duration totalHoras){
-        this.sessoes = sessoes;
-        this.totalHoras = totalHoras;
-    }
-
-    public void filtrarPorData(){
-    }
-    public void filtrarPorDisciplina(){
-    }
 }
