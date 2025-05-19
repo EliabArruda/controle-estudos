@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class SessaoServiceImplementacao implements SessaoService{
@@ -31,24 +31,29 @@ public class SessaoServiceImplementacao implements SessaoService{
     }
 
     @Override
-    public Sessao pausar(Sessao sessao) {
-        if(sessao.getDataInicio() == null) {
-            throw new RuntimeException("A sessão ainda não iniciada.");
-        }
-            sessao.setStatus(StatusEnum.PAUSADA);
+    public Sessao pausar(Long id) {
+       Sessao sessao = sessaoRepository.findById(id)
+               .orElseThrow(() -> new RuntimeException("Sessão não encontrada!"));
+       if(sessao.getDataFim() == null && sessao.getStatus() == StatusEnum.EM_ANDAMENTO) {
+           sessao.setStatus(StatusEnum.PAUSADA);
+       }
         return sessaoRepository.save(sessao);
     }
 
     @Override
-    public Sessao retomar(Sessao sessao) {
+    public Sessao retomar(Long id) {
+        Sessao sessao = sessaoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Sessão não encontrada!"));
         if(sessao.getStatus() == StatusEnum.PAUSADA && sessao.getDataFim() == null) {
             sessao.setStatus(StatusEnum.EM_ANDAMENTO);
-        } else {
-            throw new RuntimeException("A sessão não pode ser retomada.");
         }
         return sessaoRepository.save(sessao);
-    }@Override
-    public Sessao finalizar(Sessao sessao) {
+    }
+    @Override
+    public Sessao finalizar(Long id) {
+    Sessao sessao = sessaoRepository.findById(id)
+            .orElseThrow(()-> new RuntimeException("Sessão não encontrada!"));
+
         if(sessao.getDataFim() != null) {
             throw new RuntimeException("A sessão já foi finalizada anteriormente.");
         }
@@ -64,4 +69,10 @@ public class SessaoServiceImplementacao implements SessaoService{
         }
         return ChronoUnit.MINUTES.between(sessao.getDataInicio(),sessao.getDataFim());
     }
+
+    @Override
+    public List<Sessao> listarSessoes() {
+        return sessaoRepository.findAll();
+    }
+
 }
