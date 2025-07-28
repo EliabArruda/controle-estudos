@@ -1,10 +1,15 @@
 package com.eliab.controleestudos.service;
 
+import com.eliab.controleestudos.exception.SessaoNaoEncontradaException;
+import com.eliab.controleestudos.exception.UsuarioNaoEncontradoException;
+import com.eliab.controleestudos.model.Historico;
 import com.eliab.controleestudos.model.Sessao;
 import com.eliab.controleestudos.model.StatusEnum;
 import com.eliab.controleestudos.model.Usuario;
 import com.eliab.controleestudos.repository.SessaoRepository;
 import com.eliab.controleestudos.repository.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,19 +26,25 @@ public class SessaoServiceImplementacao implements SessaoService{
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private HistoricoService historicoService;
+
     @Override
     public Sessao iniciar(Sessao sessao) {
         Usuario usuario = usuarioRepository.findById(sessao.getUsuario().getId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+                .orElseThrow(() -> new UsuarioNaoEncontradoException("Usuário não encontrado!"));
+        sessao.setUsuario(usuario);
         sessao.setDataInicio(LocalDateTime.now());
         sessao.setStatus(StatusEnum.EM_ANDAMENTO);
         return sessaoRepository.save(sessao);
     }
 
+
+    @Transactional
     @Override
     public Sessao pausar(Long id) {
        Sessao sessao = sessaoRepository.findById(id)
-               .orElseThrow(() -> new RuntimeException("Sessão não encontrada!"));
+               .orElseThrow(() -> new SessaoNaoEncontradaException("Sessão não encontrada!"));
        if(sessao.getDataFim() == null && sessao.getStatus() == StatusEnum.EM_ANDAMENTO) {
            sessao.setStatus(StatusEnum.PAUSADA);
        }
@@ -43,7 +54,7 @@ public class SessaoServiceImplementacao implements SessaoService{
     @Override
     public Sessao retomar(Long id) {
         Sessao sessao = sessaoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Sessão não encontrada!"));
+                .orElseThrow(() -> new SessaoNaoEncontradaException("Sessão não encontrada!"));
         if(sessao.getStatus() == StatusEnum.PAUSADA && sessao.getDataFim() == null) {
             sessao.setStatus(StatusEnum.EM_ANDAMENTO);
         }
@@ -51,16 +62,21 @@ public class SessaoServiceImplementacao implements SessaoService{
     }
     @Override
     public Sessao finalizar(Long id) {
-    Sessao sessao = sessaoRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("Sessão não encontrada!"));
+        Sessao sessao = sessaoRepository.findById(id)
+                .orElseThrow(() -> new SessaoNaoEncontradaException("Sessão não encontrada!"));
 
-        if(sessao.getDataFim() != null) {
-            throw new RuntimeException("A sessão já foi finalizada anteriormente.");
+        if (sessao.getDataFim() != null) {
+            throw new IllegalStateException("A sessão já foi finalizada anteriormente.");
         }
-            sessao.setDataFim(LocalDateTime.now());
-            sessao.setStatus(StatusEnum.CONCLUIDA);
-        return sessaoRepository.save(sessao);
+        sessao.setDataFim(LocalDateTime.now());
+        sessao.setStatus(StatusEnum.CONCLUIDA);
+        Sessao sessaoFinalizada = sessaoRepository.save(sessao);
+
+        historicoService.adicionarSessaoAoHistorico(sessaoFinalizada);
+
+        return sessaoFinalizada;
     }
+
 
     @Override
     public Long calcularTempo(Sessao sessao) {
@@ -69,10 +85,4 @@ public class SessaoServiceImplementacao implements SessaoService{
         }
         return ChronoUnit.MINUTES.between(sessao.getDataInicio(),sessao.getDataFim());
     }
-
-    @Override
-    public List<Sessao> listarSessoes() {
-        return sessaoRepository.findAll();
-    }
-
 }

@@ -5,6 +5,8 @@ import com.eliab.controleestudos.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UsuarioServiceImplementacao implements UsuarioService{
 
@@ -17,5 +19,10 @@ public class UsuarioServiceImplementacao implements UsuarioService{
             throw new IllegalArgumentException("Nome do usuário é obrigatório!");
         }
         return usuarioRepository.save(usuario);
+    }
+
+    @Override
+    public List<Usuario> listar() {
+        return usuarioRepository.findAll();
     }
 }

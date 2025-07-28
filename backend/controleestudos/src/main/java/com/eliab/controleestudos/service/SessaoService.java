@@ -13,5 +13,4 @@ public interface SessaoService {
     Sessao retomar(Long id);
     Sessao finalizar(Long id);
     Long calcularTempo(Sessao sessao);
-    List<Sessao> listarSessoes();
 }
