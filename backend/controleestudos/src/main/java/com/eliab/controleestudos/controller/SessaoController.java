@@ -2,6 +2,8 @@ package com.eliab.controleestudos.controller;
 
 import com.eliab.controleestudos.model.Sessao;
 import com.eliab.controleestudos.service.SessaoService;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,7 @@ public class SessaoController {
         return ResponseEntity.ok(sessao);
     }
 
+
     @PutMapping(value = "/pausar/{id}")
     public ResponseEntity<?> pausar(@PathVariable Long id){
         sessaoService.pausar(id);
@@ -35,10 +38,5 @@ public class SessaoController {
     public ResponseEntity<?> finalizar(@PathVariable Long id){
         sessaoService.finalizar(id);
         return ResponseEntity.ok(id);
-    }
-
-    @GetMapping(value = "/lista-todos")
-    public ResponseEntity<Iterable<Sessao>> listar(){
-        return ResponseEntity.ok(sessaoService.listarSessoes());
     }
 }
