@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Iniciar Sessão de Estudo</h2>
+
+<form [formGroup]="sessaoForm" class="form-container">
+  <mat-form-field appearance="outline">
+    <mat-label>Disciplina</mat-label>
+    <input matInput placeholder="Ex: Matemática" formControlName="disciplina">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Assunto</mat-label>
+    <input matInput placeholder="Ex: Equações" formControlName="assunto">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Duração (minutos)</mat-label>
+    <input matInput type="number" formControlName="duracao">
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-stroked-button color="warn" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="iniciarSessao()">Iniciar</button>
+  </div>
+</form>

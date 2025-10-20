@@ -1,16 +1,19 @@
-<mat-toolbar color="primary">
-  Controle de Estudos
+<mat-toolbar color="primary" class="custom-toolbar">
+  <!-- Botão menu à esquerda -->
+  <button mat-icon-button class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <!-- Container central do título + ícone -->
+  <div class="toolbar-center">
+    <mat-icon class="toolbar-icon mat-primary">school</mat-icon>
+    <span class="toolbar-title mat-accent">Controle de Estudos</span>
+  </div>
+
+  <!-- Spacer à direita -->
+  <span class="spacer"></span>
 </mat-toolbar>
 
-<div class="container">
-  <div class="sidebar">
-    <!-- Aqui ficarão os componentes de navegação/usuário -->
-    <app-usuario></app-usuario>
-  </div>
-
-  <div class="main-content">
-    <!-- Sessão e histórico serão carregados aqui -->
-    <app-sessao></app-sessao>
-    <app-historico></app-historico>
-  </div>
+<div class="main-container">
+  <app-dashboard></app-dashboard>
 </div>

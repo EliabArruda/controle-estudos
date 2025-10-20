@@ -1,0 +1,133 @@
+/* Container principal */
+.dashboard-container, .sessao-container {
+  display: flex;
+  flex-direction: column; /* Para alinhar card + histórico verticalmente */
+  justify-content: flex-start; /* Começo da tela */
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #7c5eff 100%);
+}
+
+/* Cards */
+mat-card {
+  width: 100%;
+  max-width: 500px;
+  min-height: 220px;
+  text-align: center;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Header do card */
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+.dashboard-icon {
+  font-size: 26px;
+  color: #673ab7;
+  margin-bottom: 12px;
+}
+
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Conteúdo do card */
+.dashboard-desc {
+  font-size: 1rem;
+  color: #555;
+  margin: 16px 0;
+}
+
+/* Botões */
+.dashboard-btn {
+  font-size: 1.2rem;
+  padding: 1rem 2.5rem;
+  border-radius: 26px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+}
+
+.dashboard-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* Temporizador circular */
+.circle-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 16px;
+}
+
+.progress-circle {
+  transform: rotate(-90deg);
+}
+
+.bg-circle {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 12;
+}
+
+.fg-circle {
+  fill: none;
+  stroke: #673ab7;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.time-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Card actions */
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Histórico */
+.historico-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0 16px 16px 16px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.historico-card {
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+  transition: transform 0.2s ease;
+}
+
+.historico-card:hover {
+  transform: translateY(-2px);
+}
+
+mat-card-content p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #555;
+}

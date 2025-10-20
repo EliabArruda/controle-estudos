@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+  <!-- Card principal -->
+  <mat-card class="dashboard-card" *ngIf="!sessaoAtiva">
+    <mat-card-header>
+      <mat-icon class="dashboard-icon">school</mat-icon>
+      <mat-card-title>Dashboard</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="dashboard-desc">
+        Organize suas sessões, acompanhe seu progresso e alcance suas metas de estudo.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" class="dashboard-btn" (click)="abrirDialog()">
+        Iniciar Sessão de Estudo
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Card da sessão ativa -->
+  <mat-card class="sessao-card" *ngIf="sessaoAtiva">
+    <mat-card-header>
+      <mat-card-title>{{ sessaoAtiva.disciplina }} - {{ sessaoAtiva.assunto }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Temporizador circular -->
+      <div class="circle-container">
+        <svg class="progress-circle" width="180" height="180">
+          <circle class="bg-circle" cx="90" cy="90" r="70"></circle>
+          <circle class="fg-circle" cx="90" cy="90" r="70"
+            [attr.stroke-dasharray]="440"
+            [attr.stroke-dashoffset]="calcularProgressoCirc()"></circle>
+        </svg>
+        <div class="time-text">{{ formatarTempo(tempoRestante) }}</div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="pausarRetomar()">
+        {{ pausado ? 'Retomar' : 'Pausar' }}
+      </button>
+      <button mat-stroked-button color="warn" (click)="encerrarSessao()">Encerrar</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Histórico abaixo do card -->
+  <app-historico [historico]="historicoLocal"></app-historico>
+</div>

@@ -1,11 +1,28 @@
 import { Routes } from '@angular/router';
-import { UsuarioComponent } from './usuario/usuario.component';
-import { SessaoComponent } from './sessao/sessao.component';
-import { HistoricoComponent } from './historico/historico.component';
 
 export const routes: Routes = [
-  { path: 'usuarios', component: UsuarioComponent },
-  { path: 'sessoes', component: SessaoComponent },
-  { path: 'historico', component: HistoricoComponent },
-  { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
+  },
+  {
+    path: 'usuario',
+    loadComponent: () =>
+      import('./usuario/usuario.component').then(m => m.UsuarioComponent),
+  },
+  {
+    path: 'sessao',
+    loadComponent: () =>
+      import('./sessao/sessao.component').then(m => m.SessaoComponent),
+  },
+  {
+    path: 'historico',
+    loadComponent: () =>
+      import('./historico/historico.component').then(m => m.HistoricoComponent),
+  },
+  {
+    path: '**',
+    redirectTo: '', // redireciona rotas desconhecidas pro dashboard
+  },
 ];
