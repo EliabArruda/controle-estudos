@@ -1,9 +1,13 @@
-<div class="historico-container">
+<div class="historico-container" *ngIf="historico.length; else semHistorico">
   <mat-card *ngFor="let item of historico" class="historico-card">
     <mat-card-title>{{ item.disciplina }} - {{ item.assunto }}</mat-card-title>
     <mat-card-content>
-      <p>Duração realizada: {{ item.duracaoRealizada / 60000 | number:'1.0-0' }} min</p>
+      <p>Duração: {{ item.duracaoFormatada }}</p>
       <p>Encerrada em: {{ item.encerradaEm | date:'short' }}</p>
     </mat-card-content>
   </mat-card>
 </div>
+
+<ng-template #semHistorico>
+  <p class="sem-historico">Nenhuma sessão encerrada ainda.</p>
+</ng-template>

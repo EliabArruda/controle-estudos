@@ -3,17 +3,17 @@
     <mat-card-title>{{ sessao.disciplina }} - {{ sessao.assunto }}</mat-card-title>
   </mat-card-header>
 
-  <mat-card-content class="circle-container">
-    <svg class="progress-circle" width="180" height="180">
-      <circle class="bg-circle" cx="90" cy="90" r="70"></circle>
-      <circle class="fg-circle"
-              cx="90" cy="90" r="70"
-              [attr.stroke-dasharray]="440"
-              [attr.stroke-dashoffset]="calcularProgressoCirc()">
-      </circle>
-    </svg>
-    <div class="time-text">{{ formatarTempo(tempoRestante) }}</div>
-  </mat-card-content>
+<mat-card-content class="circle-container" *ngIf="progressoCirc !== null">
+  <svg class="progress-circle" width="180" height="180">
+    <circle class="bg-circle" cx="90" cy="90" r="70"></circle>
+    <circle class="fg-circle"
+            cx="90" cy="90" r="70"
+            [attr.stroke-dasharray]="440"
+            [attr.stroke-dashoffset]="progressoCirc">
+    </circle>
+  </svg>
+  <div class="time-text">{{ formatarTempo(tempoRestante) }}</div>
+</mat-card-content>
 
   <mat-card-actions>
     <button mat-stroked-button color="primary" (click)="pausarRetomar.emit()">

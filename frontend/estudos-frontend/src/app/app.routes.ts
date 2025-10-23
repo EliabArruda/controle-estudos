@@ -1,28 +1,14 @@
 import { Routes } from '@angular/router';
+import { LoginComponent } from './login/login/login.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  {
-    path: '',
-    loadComponent: () =>
-      import('./dashboard/dashboard.component').then(m => m.DashboardComponent),
-  },
-  {
-    path: 'usuario',
-    loadComponent: () =>
-      import('./usuario/usuario.component').then(m => m.UsuarioComponent),
-  },
-  {
-    path: 'sessao',
-    loadComponent: () =>
-      import('./sessao/sessao.component').then(m => m.SessaoComponent),
-  },
-  {
-    path: 'historico',
-    loadComponent: () =>
-      import('./historico/historico.component').then(m => m.HistoricoComponent),
-  },
-  {
-    path: '**',
-    redirectTo: '', // redireciona rotas desconhecidas pro dashboard
-  },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'cadastro', component: CadastroComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'login' }
 ];
+

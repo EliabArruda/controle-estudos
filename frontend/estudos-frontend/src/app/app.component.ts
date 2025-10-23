@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 import { UsuarioComponent } from './usuario/usuario.component';
 import { SessaoComponent } from './sessao/sessao.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RouterOutlet,
     CommonModule,
     MaterialModule,
+    HttpClientModule,
     DashboardComponent,
     UsuarioComponent,
     SessaoComponent,
