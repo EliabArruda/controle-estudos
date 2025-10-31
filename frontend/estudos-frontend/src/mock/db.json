@@ -5,104 +5,78 @@
       "nome": "Eliab",
       "email": "eliab@example.com",
       "senha": "123456"
+    },
+    {
+      "id": "2",
+      "nome": "Tayene",
+      "email": "tayene@example.com",
+      "senha": "123456"
     }
   ],
   "sessoes": [
     {
-      "id": "1",
-      "usuarioId": 1,
-      "disciplina": "Matemática",
-      "assunto": "Equações",
-      "duracaoDaSessao": 25,
-      "dataInicio": "2025-10-22T10:00:00.000Z",
-      "dataFim": "2025-10-22T10:25:00.000Z"
+      "id": "2ca8",
+      "disciplina": "RLQ",
+      "assunto": "Proposição",
+      "duracaoDaSessao": 4000,
+      "usuarioId": "1",
+      "encerradaEm": "2025-10-30T18:36:50.258Z"
     },
     {
-      "id": "eeee",
+      "id": "71f6",
+      "disciplina": "Português",
+      "assunto": "Pontuação",
+      "duracaoDaSessao": 71000,
+      "usuarioId": "1",
+      "encerradaEm": "2025-10-30T18:47:41.435Z"
+    },
+    {
+      "id": "eb34",
+      "disciplina": "Economia",
+      "assunto": "Econometria",
+      "duracaoDaSessao": 197000,
+      "usuarioId": "1",
+      "encerradaEm": "2025-10-30T18:54:20.778Z"
+    },
+    {
+      "id": "ec04",
+      "disciplina": "Auditoria",
+      "assunto": "Aditoria Interna",
+      "duracaoDaSessao": 300000,
+      "usuarioId": "1",
+      "encerradaEm": "2025-10-31T11:08:12.228Z"
+    },
+    {
+      "id": "66c1",
+      "disciplina": "Programação",
+      "assunto": "Estruturas de Repetição",
+      "duracaoDaSessao": 111000,
+      "usuarioId": "1",
+      "encerradaEm": "2025-10-31T11:55:57.381Z"
+    },
+    {
+      "id": "b03f",
+      "disciplina": "Auditoria",
+      "assunto": "Auditoria Interna",
+      "duracaoDaSessao": 228000,
+      "usuarioId": "2",
+      "encerradaEm": "2025-10-31T12:14:49.437Z"
+    },
+    {
+      "id": "d3b1",
+      "disciplina": "Engenharia de Software",
+      "assunto": "Desenvolvimento Ágil",
+      "duracaoDaSessao": 234000,
+      "usuarioId": "1",
+      "encerradaEm": "2025-10-31T12:21:53.261Z"
+    },
+    {
+      "id": "0b4c",
       "disciplina": "RLQ",
       "assunto": "Probabilidade",
-      "duracaoDaSessao": 25,
-      "usuarioId": 1
-    },
-    {
-      "id": "e7b5",
-      "disciplina": "rlq",
-      "assunto": "probabilidade",
-      "duracaoDaSessao": 25,
+      "duracaoDaSessao": 11000,
       "usuarioId": "1",
-      "encerradaEm": "2025-10-23T13:57:53.718Z"
-    },
-    {
-      "id": "9aab",
-      "disciplina": "Estatística",
-      "assunto": "SIGMA",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:09:15.203Z"
-    },
-    {
-      "id": "21f1",
-      "disciplina": "Matemática",
-      "assunto": "Equação de 1° Grau",
-      "duracaoDaSessao": 5,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:12:14.495Z"
-    },
-    {
-      "id": "1a03",
-      "disciplina": "RLQ",
-      "assunto": "Lógica Proposicional",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:15:53.738Z"
-    },
-    {
-      "id": "4498",
-      "disciplina": "jj",
-      "assunto": "jj",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:17:29.929Z"
-    },
-    {
-      "id": "07d2",
-      "disciplina": "djnjj",
-      "assunto": "njn",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:28:01.251Z"
-    },
-    {
-      "id": "6b7f",
-      "disciplina": "RLQ",
-      "assunto": "Lógica",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:35:11.178Z"
-    },
-    {
-      "id": "b1c4",
-      "disciplina": "elere",
-      "assunto": "re",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:39:09.516Z"
-    },
-    {
-      "id": "b30d",
-      "disciplina": "fdfd",
-      "assunto": "njnj",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:49:33.572Z"
-    },
-    {
-      "id": "148d",
-      "disciplina": "Matemática",
-      "assunto": "Equação de 1° Grau",
-      "duracaoDaSessao": 25,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-23T14:53:57.190Z"
+      "encerradaEm": "2025-10-31T12:27:56.183Z"
     }
   ],
   "historico": [
@@ -110,15 +84,63 @@
       "id": "1",
       "usuarioId": 1,
       "Sessoes": [
-
         {
-          "disciplina": "Matemática",
-          "assunto": "Equação de 1° Grau",
-          "duracaoDaSessao": 25,
-          "dataFim": "2025-10-23T14:53:57.224Z"
+          "disciplina": "RLQ",
+          "assunto": "Proposição",
+          "duracaoDaSessao": 0.06666666666666667,
+          "dataFim": "2025-10-30T18:36:50.286Z"
+        },
+        {
+          "disciplina": "Português",
+          "assunto": "Pontuação",
+          "duracaoDaSessao": 1.1833333333333333,
+          "dataFim": "2025-10-30T18:47:41.464Z"
+        },
+        {
+          "disciplina": "Economia",
+          "assunto": "Econometria",
+          "duracaoDaSessao": 3.283333333333333,
+          "dataFim": "2025-10-30T18:54:20.807Z"
+        },
+        {
+          "disciplina": "Auditoria",
+          "assunto": "Aditoria Interna",
+          "duracaoDaSessao": 5,
+          "dataFim": "2025-10-31T11:08:12.263Z"
+        },
+        {
+          "disciplina": "Programação",
+          "assunto": "Estruturas de Repetição",
+          "duracaoDaSessao": 2,
+          "dataFim": "2025-10-31T11:55:57.415Z"
+        },
+        {
+          "disciplina": "Engenharia de Software",
+          "assunto": "Desenvolvimento Ágil",
+          "duracaoDaSessao": 4,
+          "dataFim": "2025-10-31T12:21:53.294Z"
+        },
+        {
+          "disciplina": "RLQ",
+          "assunto": "Probabilidade",
+          "duracaoDaSessao": 0,
+          "dataFim": "2025-10-31T12:27:56.217Z"
         }
       ],
-      "totalDeHorasEstudadas": 75
+      "totalDeHorasEstudadas": 15.533333333333333
+    },
+    {
+      "id": "7818",
+      "usuarioId": "2",
+      "Sessoes": [
+        {
+          "disciplina": "Auditoria",
+          "assunto": "Auditoria Interna",
+          "duracaoDaSessao": 4,
+          "dataFim": "2025-10-31T12:14:49.465Z"
+        }
+      ],
+      "totalDeHorasEstudadas": 4
     }
   ]
 }

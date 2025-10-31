@@ -1,24 +1,26 @@
 <div class="dashboard-container">
   <!-- Sessão não iniciada -->
-  <mat-card class="dashboard-card" *ngIf="!sessaoAtiva">
-    <mat-card-header>
-      <mat-icon class="dashboard-icon" color="primary">school</mat-icon>
-      <mat-card-title>Dashboard</mat-card-title>
-    </mat-card-header>
+  <!-- Sessão não iniciada -->
+<mat-card class="dashboard-card" *ngIf="!sessaoAtiva">
+  <mat-card-header>
+    <mat-icon class="dashboard-icon" color="primary">insights</mat-icon>
+    <mat-card-title>Dashboard</mat-card-title>
+  </mat-card-header>
 
-    <mat-card-content>
-      <p class="dashboard-desc">
-        Gerencie suas sessões de estudo, acompanhe seu desempenho e veja seu histórico de aprendizado.
-      </p>
-    </mat-card-content>
+  <mat-card-content>
+    <p class="dashboard-desc">
+      Veja seu progresso, tempo total estudado e inicie uma nova sessão quando estiver pronto.
+    </p>
+  </mat-card-content>
 
-    <mat-card-actions>
-      <button mat-raised-button color="primary" class="dashboard-btn" (click)="abrirDialog()">
-        <mat-icon>play_arrow</mat-icon>
-        Iniciar Sessão
-      </button>
-    </mat-card-actions>
-  </mat-card>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" class="dashboard-btn" (click)="abrirDialog()">
+      <mat-icon>play_arrow</mat-icon>
+      Nova Sessão
+    </button>
+  </mat-card-actions>
+</mat-card>
+
 
   <!-- Sessão ativa -->
   <mat-card class="sessao-card" *ngIf="sessaoAtiva">
@@ -46,6 +48,10 @@
           <small *ngIf="pausado" class="status pausado">Pausado</small>
         </div>
       </div>
+
+      <div class="tempo-decorrido">
+        <small>Tempo estudado: <strong>{{ formatarTempo(tempoDecorrido) }}</strong></small>
+      </div>
     </mat-card-content>
 
     <mat-card-actions>
@@ -61,8 +67,80 @@
     </mat-card-actions>
   </mat-card>
 
+  <!-- Estatísticas de desempenho -->
+<section class="estatisticas-section" *ngIf="historicoLocal.length">
+  <h3 class="estatisticas-titulo">
+    <mat-icon color="primary">insights</mat-icon>
+    Resumo de Desempenho
+  </h3>
+
+  <div class="estatisticas-grid">
+    <div class="estat-card">
+      <mat-icon color="primary">schedule</mat-icon>
+      <div class="estat-info">
+        <span class="valor">{{ tempoTotalFormatado }}</span>
+        <span class="label">Tempo total estudado</span>
+      </div>
+    </div>
+
+    <div class="estat-card">
+      <mat-icon color="primary">play_circle</mat-icon>
+      <div class="estat-info">
+        <span class="valor">{{ totalSessoes }}</span>
+        <span class="label">Sessões encerradas</span>
+      </div>
+    </div>
+
+    <div class="estat-card">
+      <mat-icon color="primary">timelapse</mat-icon>
+      <div class="estat-info">
+        <span class="valor">{{ mediaDuracao }}</span>
+        <span class="label">Média por sessão</span>
+      </div>
+    </div>
+
+    <div class="estat-card">
+      <mat-icon color="primary">event</mat-icon>
+      <div class="estat-info">
+        <span class="valor">{{ ultimaSessaoData }}</span>
+        <span class="label">Última sessão</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
   <!-- Histórico -->
-  <section class="historico-section">
-    <app-historico [historico]="historicoLocal"></app-historico>
-  </section>
-</div>
+<section class="historico-section" *ngIf="historicoLocal.length; else semHistorico">
+  <h3 class="historico-titulo">
+    <mat-icon color="primary">history</mat-icon>
+    Histórico de Sessões
+  </h3>
+
+  <div class="historico-lista">
+    <div *ngFor="let item of historicoLocal" class="historico-item">
+      <div class="historico-header">
+        <div class="info-esquerda">
+          <mat-icon color="primary" class="disciplina-icon">menu_book</mat-icon>
+          <div>
+            <h4 class="disciplina">{{ item.disciplina }}</h4>
+            <p class="assunto">{{ item.assunto }}</p>
+          </div>
+        </div>
+        <div class="tempo-estudado">
+          <mat-icon>schedule</mat-icon>
+          <span>{{ item.duracaoFormatada }}</span>
+        </div>
+      </div>
+
+      <div class="historico-footer">
+        <mat-icon>event</mat-icon>
+        <span>{{ item.encerradaEm | date:'dd/MM/yyyy HH:mm' }}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #semHistorico>
+  <p class="sem-historico">Nenhuma sessão encerrada ainda.</p>
+</ng-template>

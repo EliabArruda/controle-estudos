@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -25,6 +25,39 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'estudos-frontend';
+export class AppComponent implements OnInit {
+  usuarioLogado = false;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.verificarLogin();
+
+    // Atualiza visibilidade conforme navegação
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.verificarLogin();
+      }
+    });
+  }
+
+  verificarLogin() {
+    const user = localStorage.getItem('usuarioLogado');
+    this.usuarioLogado = !!user;
+  }
+
+  logout() {
+    localStorage.removeItem('usuarioLogado');
+    this.usuarioLogado = false;
+    this.router.navigate(['/login']);
+  }
+
+  irParaDashboard() {
+    const user = localStorage.getItem('usuarioLogado');
+    if (user) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
 }

@@ -6,6 +6,7 @@ export interface HistoricoItem {
   disciplina: string;
   assunto: string;
   duracaoRealizada: number;
+  duracaoFormatada: string;
   encerradaEm: string | Date;
 }
 
@@ -34,49 +35,52 @@ export class HistoricoService {
         }
       });
   }
+  
 
   /** Adiciona novo item ao histórico */
-  adicionarHistorico(item: HistoricoItem, usuarioId: number) {
-    this.http.get<any[]>(`${this.apiUrl}?usuarioId=${usuarioId}`)
-      .subscribe(resp => {
-        if (resp.length > 0) {
-          const historico = resp[0];
-          const novasSessoes = [
-            ...historico.Sessoes,
-            {
-              disciplina: item.disciplina,
-              assunto: item.assunto,
-              duracaoDaSessao: item.duracaoRealizada / (60 * 1000),
-              dataFim: item.encerradaEm
-            }
-          ];
+adicionarHistorico(item: HistoricoItem, usuarioId: number) {
+  this.http.get<any[]>(`${this.apiUrl}?usuarioId=${usuarioId}`)
+    .subscribe(resp => {
+      const encerramentoISO = item.encerradaEm
+        ? new Date(item.encerradaEm).toISOString()
+        : new Date().toISOString();
 
-          const totalMinutos = novasSessoes.reduce((acc: number, s: any) => acc + s.duracaoDaSessao, 0);
+      if (resp.length > 0) {
+        const historico = resp[0];
+        const novasSessoes = [
+          ...historico.Sessoes,
+          {
+            disciplina: item.disciplina,
+            assunto: item.assunto,
+            duracaoDaSessao: Math.round(item.duracaoRealizada / 60000),
+            dataFim: encerramentoISO
+          }
+        ];
 
-          this.http.patch(`${this.apiUrl}/${historico.id}`, {
-            Sessoes: novasSessoes,
-            totalDeHorasEstudadas: totalMinutos
-          }).subscribe(() => {
-            // recarrega o histórico atualizado do backend
-            this.carregarHistorico(usuarioId);
-          });
+        const totalMinutos = novasSessoes.reduce(
+          (acc: number, s: any) => acc + s.duracaoDaSessao, 0
+        );
 
-        } else {
-          const novoHistorico = {
-  usuarioId,
-  Sessoes: [{
-    disciplina: item.disciplina,
-    assunto: item.assunto,
-    duracaoDaSessao: Math.round(item.duracaoRealizada / 60000),
-    dataFim: item.encerradaEm
-  }],
-  totalDeHorasEstudadas: Math.round(item.duracaoRealizada / 60000)
-};
+        this.http.patch(`${this.apiUrl}/${historico.id}`, {
+          Sessoes: novasSessoes,
+          totalDeHorasEstudadas: totalMinutos
+        }).subscribe(() => this.carregarHistorico(usuarioId));
 
+      } else {
+        const novoHistorico = {
+          usuarioId,
+          Sessoes: [{
+            disciplina: item.disciplina,
+            assunto: item.assunto,
+            duracaoDaSessao: Math.round(item.duracaoRealizada / 60000),
+            dataFim: encerramentoISO
+          }],
+          totalDeHorasEstudadas: Math.round(item.duracaoRealizada / 60000)
+        };
 
-          this.http.post(this.apiUrl, novoHistorico)
-            .subscribe(() => this.carregarHistorico(usuarioId));
-        }
-      });
-  }
+        this.http.post(this.apiUrl, novoHistorico)
+          .subscribe(() => this.carregarHistorico(usuarioId));
+      }
+    });
+}
 }

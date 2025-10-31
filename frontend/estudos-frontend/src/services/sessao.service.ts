@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HistoricoService } from './historico.service';
 
 export interface Sessao {
@@ -15,7 +15,7 @@ export class SessaoService {
   private sessaoAtivaSubject = new BehaviorSubject<Sessao | null>(null);
   sessaoAtiva$ = this.sessaoAtivaSubject.asObservable();
 
-  private tempoRestante = 0;
+  private tempoRestante = 0; // em ms
   private pausado = false;
   private intervalo: any;
 
@@ -24,10 +24,10 @@ export class SessaoService {
     private historicoService: HistoricoService
   ) {}
 
-  /** Inicia uma nova sessão e começa a contagem regressiva */
+  /** Inicia uma nova sessão */
   iniciarSessao(sessao: Sessao) {
     this.sessaoAtivaSubject.next(sessao);
-    this.tempoRestante = sessao.duracao * 60 * 1000;
+    this.tempoRestante = sessao.duracao * 60 * 1000; // em ms
     this.pausado = false;
 
     this.intervalo = setInterval(() => {
@@ -40,88 +40,78 @@ export class SessaoService {
     }, 1000);
   }
 
-  /** Alterna entre pausado e retomado */
+  /** Pausa ou retoma */
   pausarRetomar() {
     this.pausado = !this.pausado;
   }
 
-  /** Encerra a sessão atual, persiste os dados e atualiza histórico */
-encerrarSessao() {
-  clearInterval(this.intervalo);
+  /** Encerra e grava histórico corretamente */
+  encerrarSessao() {
+    clearInterval(this.intervalo);
 
-  const sessao = this.sessaoAtivaSubject.getValue();
-  const usuario = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
-  if (!sessao || !usuario.id) return;
+    const sessao = this.sessaoAtivaSubject.getValue();
+    const usuario = JSON.parse(localStorage.getItem('usuarioLogado') || '{}');
+    if (!sessao || !usuario.id) return;
 
-  const itemSessao = {
-    disciplina: sessao.disciplina,
-    assunto: sessao.assunto,
-    duracaoDaSessao: sessao.duracao,
-    usuarioId: usuario.id,
-    encerradaEm: new Date()
-  };
+    const tempoTotalMs = sessao.duracao * 60 * 1000;
+    const tempoEstudadoMs = tempoTotalMs - this.tempoRestante;
 
-  // Salva a sessão em /sessoes
-  this.http.post(`${this.apiUrl}/sessoes`, itemSessao)
-    .subscribe(() => {
+    const itemSessao = {
+      disciplina: sessao.disciplina,
+      assunto: sessao.assunto,
+      duracaoDaSessao: tempoEstudadoMs, // salva o tempo realmente estudado
+      usuarioId: usuario.id,
+      encerradaEm: new Date()
+    };
+
+    // salva a sessão em /sessoes
+    this.http.post(`${this.apiUrl}/sessoes`, itemSessao).subscribe(() => {
       console.log('Sessão salva em /sessoes');
 
-      // Atualiza o histórico do usuário no db.json
+      // adiciona ao histórico com o tempo correto e formatado
       this.historicoService.adicionarHistorico({
         disciplina: sessao.disciplina,
         assunto: sessao.assunto,
-        duracaoRealizada: sessao.duracao * 60000,
+        duracaoRealizada: tempoEstudadoMs,
+        duracaoFormatada: this.formatarTempo(tempoEstudadoMs),
         encerradaEm: new Date()
       }, usuario.id);
     });
 
-  // Reseta a sessão ativa
-  this.sessaoAtivaSubject.next(null);
-  this.tempoRestante = 0;
-  this.pausado = false;
-}
-
-  /** Atualiza o histórico do usuário no backend */
-  private atualizarHistorico(itemSessao: any, usuarioId: number) {
-    this.http.get<any[]>(`${this.apiUrl}/historicos?usuarioId=${usuarioId}`)
-      .subscribe(histList => {
-        if (histList.length) {
-          const hist = histList[0];
-          const novasSessoes = [...(hist.Sessoes || []), itemSessao];
-          const totalHoras = novasSessoes.reduce((acc, s) => acc + s.duracaoDaSessao, 0);
-
-          this.http.patch(`${this.apiUrl}/historicos/${hist.id}`, {
-            Sessoes: novasSessoes,
-            totalDeHorasEstudadas: totalHoras
-          }).subscribe();
-        } else {
-          this.http.post(`${this.apiUrl}/historicos`, {
-            Sessoes: [itemSessao],
-            totalDeHorasEstudadas: itemSessao.duracaoDaSessao,
-            usuarioId
-          }).subscribe();
-        }
-      });
+    // limpa estado
+    this.sessaoAtivaSubject.next(null);
+    this.tempoRestante = 0;
+    this.pausado = false;
   }
 
-  /** Retorna tempo restante da sessão em ms */
+  /** Formata tempo de ms -> "Xm Ys" */
+  private formatarTempo(msTotais: number): string {
+  const totalSegundos = Math.floor(msTotais / 1000);
+  const horas = Math.floor(totalSegundos / 3600);
+  const minutos = Math.floor((totalSegundos % 3600) / 60);
+  const segundos = totalSegundos % 60;
+
+  if (horas > 0) return `${horas}h ${minutos}m ${segundos}s`;
+  if (minutos > 0) return `${minutos}m ${segundos}s`;
+  return `${segundos}s`;
+}
+
+
+  /** Getters */
   getTempoRestante() {
     return this.tempoRestante;
   }
 
-  /** Retorna se está pausado */
   isPausado() {
     return this.pausado;
   }
 
-  /** Retorna progresso da sessão em % */
   getProgresso(): number {
     const sessao = this.sessaoAtivaSubject.getValue();
     if (!sessao) return 0;
     return (this.tempoRestante / (sessao.duracao * 60 * 1000)) * 100;
   }
 
-  /** Permite restaurar sessões persistidas no dashboard */
   carregarSessaoAtiva(sessao: Sessao | null) {
     this.sessaoAtivaSubject.next(sessao);
   }
