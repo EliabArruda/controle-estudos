@@ -11,6 +11,12 @@
       "nome": "Tayene",
       "email": "tayene@example.com",
       "senha": "123456"
+    },
+    {
+      "id": "c730",
+      "nome": "Abraão Moura Arruda",
+      "email": "abraao@example.com",
+      "senha": "123456"
     }
   ],
   "sessoes": [
@@ -31,52 +37,36 @@
       "encerradaEm": "2025-10-30T18:47:41.435Z"
     },
     {
-      "id": "eb34",
-      "disciplina": "Economia",
-      "assunto": "Econometria",
-      "duracaoDaSessao": 197000,
+      "id": "5e5d",
+      "disciplina": "Matemática",
+      "assunto": "Álgebra Linear",
+      "duracaoDaSessao": 35000,
       "usuarioId": "1",
-      "encerradaEm": "2025-10-30T18:54:20.778Z"
+      "encerradaEm": "2025-11-04T17:22:08.517Z"
     },
     {
-      "id": "ec04",
-      "disciplina": "Auditoria",
-      "assunto": "Aditoria Interna",
-      "duracaoDaSessao": 300000,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-31T11:08:12.228Z"
+      "id": "bd1d",
+      "disciplina": "Matemática",
+      "assunto": "Numerais",
+      "duracaoDaSessao": 32000,
+      "usuarioId": "c730",
+      "encerradaEm": "2025-11-04T17:24:27.541Z"
     },
     {
-      "id": "66c1",
-      "disciplina": "Programação",
-      "assunto": "Estruturas de Repetição",
-      "duracaoDaSessao": 111000,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-31T11:55:57.381Z"
+      "id": "60a0",
+      "disciplina": "Português",
+      "assunto": "Alfabeto",
+      "duracaoDaSessao": 28000,
+      "usuarioId": "c730",
+      "encerradaEm": "2025-11-04T17:25:36.381Z"
     },
     {
-      "id": "b03f",
+      "id": "95b5",
       "disciplina": "Auditoria",
       "assunto": "Auditoria Interna",
-      "duracaoDaSessao": 228000,
-      "usuarioId": "2",
-      "encerradaEm": "2025-10-31T12:14:49.437Z"
-    },
-    {
-      "id": "d3b1",
-      "disciplina": "Engenharia de Software",
-      "assunto": "Desenvolvimento Ágil",
-      "duracaoDaSessao": 234000,
+      "duracaoDaSessao": 34000,
       "usuarioId": "1",
-      "encerradaEm": "2025-10-31T12:21:53.261Z"
-    },
-    {
-      "id": "0b4c",
-      "disciplina": "RLQ",
-      "assunto": "Probabilidade",
-      "duracaoDaSessao": 11000,
-      "usuarioId": "1",
-      "encerradaEm": "2025-10-31T12:27:56.183Z"
+      "encerradaEm": "2025-11-04T18:28:59.874Z"
     }
   ],
   "historico": [
@@ -97,37 +87,19 @@
           "dataFim": "2025-10-30T18:47:41.464Z"
         },
         {
-          "disciplina": "Economia",
-          "assunto": "Econometria",
-          "duracaoDaSessao": 3.283333333333333,
-          "dataFim": "2025-10-30T18:54:20.807Z"
+          "disciplina": "Matemática",
+          "assunto": "Álgebra Linear",
+          "duracaoDaSessao": 0.58,
+          "dataFim": "2025-11-04T17:22:08.550Z"
         },
         {
           "disciplina": "Auditoria",
-          "assunto": "Aditoria Interna",
-          "duracaoDaSessao": 5,
-          "dataFim": "2025-10-31T11:08:12.263Z"
-        },
-        {
-          "disciplina": "Programação",
-          "assunto": "Estruturas de Repetição",
-          "duracaoDaSessao": 2,
-          "dataFim": "2025-10-31T11:55:57.415Z"
-        },
-        {
-          "disciplina": "Engenharia de Software",
-          "assunto": "Desenvolvimento Ágil",
-          "duracaoDaSessao": 4,
-          "dataFim": "2025-10-31T12:21:53.294Z"
-        },
-        {
-          "disciplina": "RLQ",
-          "assunto": "Probabilidade",
-          "duracaoDaSessao": 0,
-          "dataFim": "2025-10-31T12:27:56.217Z"
+          "assunto": "Auditoria Interna",
+          "duracaoDaSessao": 0.57,
+          "dataFim": "2025-11-04T18:28:59.905Z"
         }
       ],
-      "totalDeHorasEstudadas": 15.533333333333333
+      "totalDeHorasEstudadas": 2.4
     },
     {
       "id": "7818",
@@ -136,11 +108,30 @@
         {
           "disciplina": "Auditoria",
           "assunto": "Auditoria Interna",
-          "duracaoDaSessao": 4,
+          "duracaoDaSessao": 0.06666666666666667,
           "dataFim": "2025-10-31T12:14:49.465Z"
         }
       ],
       "totalDeHorasEstudadas": 4
+    },
+    {
+      "id": "7030",
+      "usuarioId": "c730",
+      "Sessoes": [
+        {
+          "disciplina": "Matemática",
+          "assunto": "Numerais",
+          "duracaoDaSessao": 0.53,
+          "dataFim": "2025-11-04T17:24:27.568Z"
+        },
+        {
+          "disciplina": "Português",
+          "assunto": "Alfabeto",
+          "duracaoDaSessao": 0.47,
+          "dataFim": "2025-11-04T17:25:36.409Z"
+        }
+      ],
+      "totalDeHorasEstudadas": 1
     }
   ]
 }
