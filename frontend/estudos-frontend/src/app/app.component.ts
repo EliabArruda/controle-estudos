@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.verificarLogin();
 
-    // Atualiza visibilidade conforme navegação
+
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.verificarLogin();

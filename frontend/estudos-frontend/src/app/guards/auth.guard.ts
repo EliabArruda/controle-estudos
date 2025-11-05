@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root', // garante que o serviço está disponível globalmente
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
 
@@ -11,9 +11,9 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     const usuarioLogado = localStorage.getItem('usuarioLogado');
     if (usuarioLogado) {
-      return true; // pode acessar a rota
+      return true; 
     } else {
-      this.router.navigate(['/login']); // redireciona para login
+      this.router.navigate(['/login']);
       return false;
     }
   }

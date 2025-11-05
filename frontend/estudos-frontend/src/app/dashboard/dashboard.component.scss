@@ -1,8 +1,8 @@
-/* Container principal */
+
 .dashboard-container, .sessao-container {
   display: flex;
-  flex-direction: column; /* Para alinhar card + histórico verticalmente */
-  justify-content: flex-start; /* Começo da tela */
+  flex-direction: column; 
+  justify-content: flex-start; 
   align-items: center;
   min-height: calc(100vh - 80px);
   padding: 16px;
@@ -10,7 +10,7 @@
  font-family: 'Nunito', sans-serif;
 }
 
-/* Cards */
+
 mat-card {
   font-family: 'Nunito', sans-serif;
   width: 100%;
@@ -25,7 +25,7 @@ mat-card {
   
 }
 
-/* Header do card */
+
 mat-card-header {
   font-family: 'Nunito', sans-serif;
   display: flex;
@@ -42,7 +42,7 @@ mat-card-header {
   margin-bottom: 12px;
 }
 
-/* Deixa o título com mais destaque e identidade */
+
 mat-card-title {
   font-family: 'Nunito', sans-serif;
   font-size: 1.7rem;
@@ -54,7 +54,7 @@ mat-card-title {
   text-shadow: 1px 1px 2px rgba(75, 0, 130, 0.15);
 }
 
-/* Dá mais “vida” à descrição */
+
 .dashboard-desc {
   font-family: 'Nunito', sans-serif;
   font-size: 1.1rem;
@@ -71,7 +71,7 @@ mat-card-title {
 }
 
 
-/* Botões */
+
 .dashboard-btn {
   font-family: 'Nunito', sans-serif;
   font-size: 1.2rem;
@@ -88,7 +88,7 @@ mat-card-title {
   box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
-/* Temporizador circular */
+
 .circle-container {
   position: relative;
   width: 180px;
@@ -111,7 +111,7 @@ mat-card-title {
   stroke: #673ab7;
   stroke-width: 12;
   stroke-linecap: round;
-  //transition: stroke-dashoffset 0.3s linear;
+
 }
 
 .time-text {
@@ -123,7 +123,7 @@ mat-card-title {
   font-weight: bold;
 }
 
-/* Card actions */
+
 mat-card-actions {
   display: flex;
   justify-content: center;
@@ -131,10 +131,6 @@ mat-card-actions {
   margin-top: 16px;
   
 }
-
-/* =======================
-   ESTATÍSTICAS DO DASHBOARD
-======================= */
 
 .estatisticas-section {
   width: 100%;
@@ -202,7 +198,7 @@ mat-card-actions {
 }
 
 
-/* HISTÓRICO */
+
 .historico-section {
   
   width: 100%;
@@ -231,7 +227,7 @@ mat-card-actions {
   gap: 14px;
 }
 
-/* ITEM DO HISTÓRICO */
+
 .historico-item {
   
   display: flex;
@@ -249,7 +245,7 @@ mat-card-actions {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
-/* CABEÇALHO */
+
 .historico-header {
   
   display: flex;
@@ -283,7 +279,7 @@ mat-card-actions {
   color: #777;
 }
 
-/* TEMPO */
+
 .tempo-estudado {
   display: flex;
   align-items: center;
@@ -300,7 +296,7 @@ mat-card-actions {
   font-size: 18px;
 }
 
-/* RODAPÉ */
+
 .historico-footer {
   display: flex;
   align-items: center;

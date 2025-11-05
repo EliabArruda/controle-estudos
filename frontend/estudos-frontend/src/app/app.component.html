@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="custom-toolbar">
-  <!-- Botão menu -->
+  
   <button mat-icon-button class="menu-button">
     <mat-icon>menu</mat-icon>
   </button>
 
-  <!-- Título clicável -->
+  
   <div class="toolbar-center" (click)="irParaDashboard()">
     <mat-icon class="toolbar-icon mat-primary">school</mat-icon>
     <span class="toolbar-title mat-accent">Controle de Estudos</span>
@@ -12,7 +12,7 @@
 
   <span class="spacer"></span>
 
-  <!-- Botão logout visível apenas se logado -->
+  
   <button
     *ngIf="usuarioLogado"
     mat-button

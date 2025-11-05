@@ -18,7 +18,6 @@ import { Subscription, interval } from 'rxjs';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  // Dados de estatísticas
 tempoTotalFormatado = '00:00';
 totalSessoes = 0;
 mediaDuracao = '00:00';
@@ -46,11 +45,9 @@ private atualizarEstatisticas() {
 
   this.ultimaSessaoData = ultima ? ultima.toLocaleDateString('pt-BR') : '-';
 }
-
-
   sessaoAtiva: Sessao | null = null;
   tempoRestante = 0;
-  tempoDecorrido = 0; // 👈 novo
+  tempoDecorrido = 0; 
   progresso = 0;
   pausado = false;
   historicoLocal: HistoricoItem[] = [];
@@ -75,13 +72,13 @@ private atualizarEstatisticas() {
       if (sessao) {
         const total = sessao.duracao * 60 * 1000;
         this.tempoRestante = this.sessaoService.getTempoRestante() || total;
-        this.tempoDecorrido = total - this.tempoRestante; // 👈 calcula quanto já estudou
+        this.tempoDecorrido = total - this.tempoRestante; 
         this.progresso = (this.tempoRestante / total) * 100;
         this.pausado = this.sessaoService.isPausado();
 
         this.intervalSub = interval(1000).subscribe(() => {
           this.tempoRestante = this.sessaoService.getTempoRestante();
-          this.tempoDecorrido = total - this.tempoRestante; // 👈 atualiza continuamente
+          this.tempoDecorrido = total - this.tempoRestante; 
           this.progresso = (this.tempoRestante / total) * 100;
           this.pausado = this.sessaoService.isPausado();
         });
@@ -96,7 +93,6 @@ private atualizarEstatisticas() {
     this.historicoService.historico$.subscribe(h => {
   this.historicoLocal = h.map(item => ({
     ...item,
-    // mantém como Date para o date pipe funcionar corretamente
     encerradaEm: item.encerradaEm ? new Date(item.encerradaEm) : new Date(),
     duracaoFormatada: item.duracaoFormatada || this.formatarTempo(item.duracaoRealizada)
   }));

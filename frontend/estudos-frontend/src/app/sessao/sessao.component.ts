@@ -25,10 +25,9 @@ export class SessaoComponent implements OnInit, OnChanges {
   @Output() encerrar = new EventEmitter<void>();
   @Output() pausarRetomar = new EventEmitter<void>();
 
-  progressoCirc = 0; // já inicia definido
+  progressoCirc = 0;
 
   ngOnInit(): void {
-    // Garante que o círculo inicie no estado correto
     this.progressoCirc = this.calcularProgressoCirc();
   }
 
@@ -39,7 +38,6 @@ export class SessaoComponent implements OnInit, OnChanges {
   }
 
   calcularProgressoCirc(): number {
-    // Decrescendo: 0% = cheio, 100% = vazio
     return (440 * this.progresso) / 100;
   }
 

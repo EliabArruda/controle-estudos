@@ -3,14 +3,14 @@
     {
       "id": "1",
       "nome": "Eliab",
-      "email": "eliab@example.com",
-      "senha": "123456"
+      "email": "eliabad20t@gmail.com",
+      "senha": "Eliab123"
     },
     {
       "id": "2",
       "nome": "Tayene",
-      "email": "tayene@example.com",
-      "senha": "123456"
+      "email": "tayenem@gmail.com",
+      "senha": "Tayene123"
     },
     {
       "id": "c730",
@@ -21,52 +21,20 @@
   ],
   "sessoes": [
     {
-      "id": "2ca8",
-      "disciplina": "RLQ",
-      "assunto": "Proposição",
-      "duracaoDaSessao": 4000,
+      "id": "c7d2",
+      "disciplina": "Raciocínio Lógico",
+      "assunto": "Lógica Proposicional",
+      "duracaoDaSessao": 33000,
       "usuarioId": "1",
-      "encerradaEm": "2025-10-30T18:36:50.258Z"
+      "encerradaEm": "2025-11-05T18:51:22.045Z"
     },
     {
-      "id": "71f6",
-      "disciplina": "Português",
-      "assunto": "Pontuação",
-      "duracaoDaSessao": 71000,
+      "id": "b716",
+      "disciplina": "Segurança da Informação",
+      "assunto": "Backup",
+      "duracaoDaSessao": 69000,
       "usuarioId": "1",
-      "encerradaEm": "2025-10-30T18:47:41.435Z"
-    },
-    {
-      "id": "5e5d",
-      "disciplina": "Matemática",
-      "assunto": "Álgebra Linear",
-      "duracaoDaSessao": 35000,
-      "usuarioId": "1",
-      "encerradaEm": "2025-11-04T17:22:08.517Z"
-    },
-    {
-      "id": "bd1d",
-      "disciplina": "Matemática",
-      "assunto": "Numerais",
-      "duracaoDaSessao": 32000,
-      "usuarioId": "c730",
-      "encerradaEm": "2025-11-04T17:24:27.541Z"
-    },
-    {
-      "id": "60a0",
-      "disciplina": "Português",
-      "assunto": "Alfabeto",
-      "duracaoDaSessao": 28000,
-      "usuarioId": "c730",
-      "encerradaEm": "2025-11-04T17:25:36.381Z"
-    },
-    {
-      "id": "95b5",
-      "disciplina": "Auditoria",
-      "assunto": "Auditoria Interna",
-      "duracaoDaSessao": 34000,
-      "usuarioId": "1",
-      "encerradaEm": "2025-11-04T18:28:59.874Z"
+      "encerradaEm": "2025-11-05T18:53:00.807Z"
     }
   ],
   "historico": [
@@ -75,63 +43,31 @@
       "usuarioId": 1,
       "Sessoes": [
         {
-          "disciplina": "RLQ",
-          "assunto": "Proposição",
-          "duracaoDaSessao": 0.06666666666666667,
-          "dataFim": "2025-10-30T18:36:50.286Z"
+          "disciplina": "Raciocínio Lógico",
+          "assunto": "Lógica Proposicional",
+          "duracaoDaSessao": 0.55,
+          "dataFim": "2025-11-05T18:51:22.079Z"
         },
         {
-          "disciplina": "Português",
-          "assunto": "Pontuação",
-          "duracaoDaSessao": 1.1833333333333333,
-          "dataFim": "2025-10-30T18:47:41.464Z"
-        },
-        {
-          "disciplina": "Matemática",
-          "assunto": "Álgebra Linear",
-          "duracaoDaSessao": 0.58,
-          "dataFim": "2025-11-04T17:22:08.550Z"
-        },
-        {
-          "disciplina": "Auditoria",
-          "assunto": "Auditoria Interna",
-          "duracaoDaSessao": 0.57,
-          "dataFim": "2025-11-04T18:28:59.905Z"
+          "disciplina": "Segurança da Informação",
+          "assunto": "Backup",
+          "duracaoDaSessao": 1.15,
+          "dataFim": "2025-11-05T18:53:00.837Z"
         }
       ],
-      "totalDeHorasEstudadas": 2.4
+      "totalDeHorasEstudadas": 1.7
     },
     {
       "id": "7818",
       "usuarioId": "2",
-      "Sessoes": [
-        {
-          "disciplina": "Auditoria",
-          "assunto": "Auditoria Interna",
-          "duracaoDaSessao": 0.06666666666666667,
-          "dataFim": "2025-10-31T12:14:49.465Z"
-        }
-      ],
-      "totalDeHorasEstudadas": 4
+      "Sessoes": [],
+      "totalDeHorasEstudadas": 0
     },
     {
       "id": "7030",
       "usuarioId": "c730",
-      "Sessoes": [
-        {
-          "disciplina": "Matemática",
-          "assunto": "Numerais",
-          "duracaoDaSessao": 0.53,
-          "dataFim": "2025-11-04T17:24:27.568Z"
-        },
-        {
-          "disciplina": "Português",
-          "assunto": "Alfabeto",
-          "duracaoDaSessao": 0.47,
-          "dataFim": "2025-11-04T17:25:36.409Z"
-        }
-      ],
-      "totalDeHorasEstudadas": 1
+      "Sessoes": [],
+      "totalDeHorasEstudadas": 0
     }
   ]
 }

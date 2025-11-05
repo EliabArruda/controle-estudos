@@ -43,10 +43,10 @@ export class UsuarioComponent {
   const { email, senha } = this.loginForm.value;
   this.usuarioService.login(email, senha).subscribe({
     next: (usuario) => {
-      // Usuário logado, não há token para salvar
+     
       this.erro = null;
       console.log('Usuário logado:', usuario);
-      this.router.navigate(['']); // redireciona para Dashboard
+      this.router.navigate(['']); 
     },
     error: (err) => {
       this.erro = 'Usuário ou senha inválidos';

@@ -1,6 +1,6 @@
 <div class="dashboard-container">
-  <!-- Sessão não iniciada -->
-  <!-- Sessão não iniciada -->
+  
+  
 <mat-card class="dashboard-card" *ngIf="!sessaoAtiva">
   <mat-card-header>
     <mat-icon class="dashboard-icon" color="primary">insights</mat-icon>
@@ -22,7 +22,7 @@
 </mat-card>
 
 
-  <!-- Sessão ativa -->
+  
   <mat-card class="sessao-card" *ngIf="sessaoAtiva">
     <mat-card-header>
       <mat-card-title>{{ sessaoAtiva.disciplina }}</mat-card-title>
@@ -67,7 +67,7 @@
     </mat-card-actions>
   </mat-card>
 
-  <!-- Estatísticas de desempenho -->
+  
 <section class="estatisticas-section" *ngIf="historicoLocal.length">
   <h3 class="estatisticas-titulo">
     <mat-icon color="primary">insights</mat-icon>
@@ -110,7 +110,7 @@
 </section>
 
 
-  <!-- Histórico -->
+  
 <section class="historico-section" *ngIf="historicoLocal.length; else semHistorico">
   <h3 class="historico-titulo">
     <mat-icon color="primary">history</mat-icon>

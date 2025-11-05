@@ -6,7 +6,7 @@ import { HistoricoService } from './historico.service';
 export interface Sessao {
   disciplina: string;
   assunto: string;
-  duracao: number; // em minutos
+  duracao: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -15,19 +15,19 @@ export class SessaoService {
   private sessaoAtivaSubject = new BehaviorSubject<Sessao | null>(null);
   sessaoAtiva$ = this.sessaoAtivaSubject.asObservable();
 
-  private tempoRestante = 0; // em ms
+  private tempoRestante = 0;
   private pausado = false;
   private intervalo: any;
 
   constructor(
     private http: HttpClient,
-    private historicoService: HistoricoService
+    private historicoService: HistoricoService,
   ) {}
 
-  /** Inicia uma nova sessão */
+  
   iniciarSessao(sessao: Sessao) {
     this.sessaoAtivaSubject.next(sessao);
-    this.tempoRestante = sessao.duracao * 60 * 1000; // em ms
+    this.tempoRestante = sessao.duracao * 60 * 1000;
     this.pausado = false;
 
     this.intervalo = setInterval(() => {
@@ -40,12 +40,12 @@ export class SessaoService {
     }, 1000);
   }
 
-  /** Pausa ou retoma */
+  
   pausarRetomar() {
     this.pausado = !this.pausado;
   }
 
-  /** Encerra e grava histórico corretamente */
+  
   encerrarSessao() {
     clearInterval(this.intervalo);
 
@@ -59,45 +59,47 @@ export class SessaoService {
     const itemSessao = {
       disciplina: sessao.disciplina,
       assunto: sessao.assunto,
-      duracaoDaSessao: tempoEstudadoMs, // salva o tempo realmente estudado
+      duracaoDaSessao: tempoEstudadoMs,
       usuarioId: usuario.id,
-      encerradaEm: new Date()
+      encerradaEm: new Date(),
     };
 
-    // salva a sessão em /sessoes
+
     this.http.post(`${this.apiUrl}/sessoes`, itemSessao).subscribe(() => {
       console.log('Sessão salva em /sessoes');
 
-      // adiciona ao histórico com o tempo correto e formatado
-      this.historicoService.adicionarHistorico({
-        disciplina: sessao.disciplina,
-        assunto: sessao.assunto,
-        duracaoRealizada: tempoEstudadoMs,
-        duracaoFormatada: this.formatarTempo(tempoEstudadoMs),
-        encerradaEm: new Date()
-      }, usuario.id);
+
+      this.historicoService.adicionarHistorico(
+        {
+          disciplina: sessao.disciplina,
+          assunto: sessao.assunto,
+          duracaoRealizada: tempoEstudadoMs,
+          duracaoFormatada: this.formatarTempo(tempoEstudadoMs),
+          encerradaEm: new Date(),
+        },
+        usuario.id,
+      );
     });
 
-    // limpa estado
+
     this.sessaoAtivaSubject.next(null);
     this.tempoRestante = 0;
     this.pausado = false;
   }
 
-  /** Formata tempo de ms -> "Xm Ys" */
+  
   private formatarTempo(msTotais: number): string {
-  const totalSegundos = Math.floor(msTotais / 1000);
-  const horas = Math.floor(totalSegundos / 3600);
-  const minutos = Math.floor((totalSegundos % 3600) / 60);
-  const segundos = totalSegundos % 60;
+    const totalSegundos = Math.floor(msTotais / 1000);
+    const horas = Math.floor(totalSegundos / 3600);
+    const minutos = Math.floor((totalSegundos % 3600) / 60);
+    const segundos = totalSegundos % 60;
 
-  if (horas > 0) return `${horas}h ${minutos}m ${segundos}s`;
-  if (minutos > 0) return `${minutos}m ${segundos}s`;
-  return `${segundos}s`;
-}
+    if (horas > 0) return `${horas}h ${minutos}m ${segundos}s`;
+    if (minutos > 0) return `${minutos}m ${segundos}s`;
+    return `${segundos}s`;
+  }
 
-
-  /** Getters */
+  
   getTempoRestante() {
     return this.tempoRestante;
   }
