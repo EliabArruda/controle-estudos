@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  background-color: #f8f9fa;
+}
+
+.mat-toolbar {
+  background-color: #ffffff !important;
+  color: #333 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+button.mat-flat-button {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.mat-dialog-container {
+  border-radius: 12px;
+}

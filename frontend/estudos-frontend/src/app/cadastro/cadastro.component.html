@@ -1,0 +1,38 @@
+<div class="cadastro-container">
+  <mat-card class="cadastro-card">
+    <h2>Criar Conta</h2>
+
+    <form (ngSubmit)="cadastrar()">
+      <input
+        type="text"
+        placeholder="Nome"
+        [(ngModel)]="usuario.nome"
+        name="nome"
+        required
+      />
+
+      <input
+        type="email"
+        placeholder="E-mail"
+        [(ngModel)]="usuario.email"
+        name="email"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Senha"
+        [(ngModel)]="usuario.senha"
+        name="senha"
+        required
+      />
+
+      <button type="submit" class="cadastro-btn">Cadastrar</button>
+    </form>
+
+    <p class="login-link">
+      Já tem conta?
+      <a routerLink="/login">Faça login</a>
+    </p>
+  </mat-card>
+</div>

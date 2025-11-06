@@ -1,0 +1,40 @@
+.circle-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 16px;
+}
+
+.progress-circle {
+  transform: rotate(-90deg);
+}
+
+.bg-circle {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 12;
+}
+
+.fg-circle {
+  fill: none;
+  stroke: #673ab7;
+  stroke-width: 12;
+  stroke-linecap: round;
+  //transition: none !important; 
+}
+
+.time-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}

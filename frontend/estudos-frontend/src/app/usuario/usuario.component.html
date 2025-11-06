@@ -1,0 +1,28 @@
+<mat-card class="login-card">
+  <h2>Entrar</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="seu@email.com" />
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Email é obrigatório</mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Formato inválido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" formControlName="senha" placeholder="******" />
+      <mat-error *ngIf="loginForm.get('senha')?.hasError('required')">Senha é obrigatória</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+      Entrar
+    </button>
+
+    <p class="erro" *ngIf="erro">{{ erro }}</p>
+  </form>
+
+  <div class="cadastro-link">
+    <p>Não tem conta? <a routerLink="/cadastro">Cadastre-se</a></p>
+  </div>
+</mat-card>

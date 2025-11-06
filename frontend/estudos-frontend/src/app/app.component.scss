@@ -1,0 +1,60 @@
+.custom-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  padding: 0 20px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.toolbar-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.toolbar-center:hover {
+  transform: scale(1.03);
+  color: #5e35b1; 
+}
+
+.toolbar-icon {
+  font-size: 28px;
+  color: #5e35b1;
+}
+
+.toolbar-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #4b0082;
+  user-select: none;
+}
+
+.menu-button {
+  z-index: 1;
+  color: #4b0082;
+
+  &:hover {
+    background-color: rgba(75, 0, 130, 0.08);
+  }
+}
+
+.spacer {
+  width: 40px;
+}
+
+.main-container {
+  padding: 0;
+  background: linear-gradient(120deg, #f8f9fa 0%, #f3e8ff 100%);
+  min-height: calc(100vh - 72px);
+}

@@ -1,0 +1,29 @@
+<mat-toolbar color="primary" class="custom-toolbar">
+  
+  <button mat-icon-button class="menu-button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  
+  <div class="toolbar-center" (click)="irParaDashboard()">
+    <mat-icon class="toolbar-icon mat-primary">school</mat-icon>
+    <span class="toolbar-title mat-accent">Controle de Estudos</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  
+  <button
+    *ngIf="usuarioLogado"
+    mat-button
+    color="warn"
+    (click)="logout()"
+    class="logout-btn"
+  >
+    <mat-icon>logout</mat-icon> Sair
+  </button>
+</mat-toolbar>
+
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

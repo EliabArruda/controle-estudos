@@ -1,0 +1,28 @@
+<div class="historico-container" *ngIf="historico.length; else semHistorico">
+  <mat-card *ngFor="let item of historico" class="historico-card">
+    <mat-card-header>
+      <div mat-card-avatar class="historico-avatar">
+        <mat-icon>menu_book</mat-icon>
+      </div>
+      <mat-card-title>{{ item.disciplina }}</mat-card-title>
+      <mat-card-subtitle>{{ item.assunto }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="historico-info">
+        <p>
+          <mat-icon color="primary">schedule</mat-icon>
+          <strong>Duração:</strong> {{ item.duracaoFormatada }}
+        </p>
+        <p>
+          <mat-icon color="accent">event</mat-icon>
+          <strong>Encerrada em:</strong> {{ item.encerradaEm | date:'short' }}
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #semHistorico>
+  <p class="sem-historico">📭 Nenhuma sessão encerrada ainda.</p>
+</ng-template>

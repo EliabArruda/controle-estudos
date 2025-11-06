@@ -1,0 +1,41 @@
+
+.historico-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  width: 100%;
+}
+
+
+.historico-card {
+  width: 100%;
+  max-width: 1080px;
+  min-height: 100px;
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.historico-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+}
+
+
+.historico-card mat-card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+
+.historico-card mat-card-content p {
+  font-size: 1rem;
+  color: #555;
+  margin: 4px 0;
+}

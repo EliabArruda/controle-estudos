@@ -1,0 +1,30 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <h2>Login</h2>
+
+    <form (ngSubmit)="login()">
+      <input
+        type="email"
+        placeholder="E-mail"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Senha"
+        [(ngModel)]="senha"
+        name="senha"
+        required
+      />
+
+      <button type="submit" class="login-btn">Entrar</button>
+    </form>
+
+    <p class="cadastro-link">
+      Não tem conta?
+      <a routerLink="/cadastro">Cadastre-se</a>
+    </p>
+  </mat-card>
+</div>
